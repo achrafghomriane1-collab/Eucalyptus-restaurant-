@@ -1,0 +1,13 @@
+body {
+    margin: 0; padding: 0; min-height: 100vh;
+    background-image: url('assets/52967.jpg');
+    background-size: cover; background-position: center;
+    background-attachment: fixed; font-family: sans-serif;
+}
+.container {
+    width: 90%; max-width: 500px; margin: 50px auto;
+    background: rgba(0, 0, 0, 0.8); padding: 20px;
+    border-radius: 15px; color: white;
+}
+.item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #444; }
+button { padding: 10px 20px; background: #e67e22; color: white; border: none; border-radius: 5px; }
