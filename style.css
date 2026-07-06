@@ -1,4 +1,63 @@
-body { font-family: sans-serif; text-align: center; background-image: url('assets/bg.jpg'); background-size: cover; color: white; }
-.page { background: rgba(0,0,0,0.7); padding: 20px; border-radius: 15px; margin: 20px; }
-.item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #444; }
-#cart-footer { position: fixed; bottom: 0; width: 100%; background: #e67e22; padding: 15px; cursor: pointer; }
+/* تنسيق أساسي للصفحة لتغطي الشاشة بالكامل */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* تنسيق الصفحات لتكون في وسط الشاشة */
+.page {
+    width: 100%;
+    max-width: 600px; /* عرض مناسب للهاتف */
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* تنسيق حاوية القائمة */
+#category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+button {
+    padding: 10px 15px;
+    background: #e67e22;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* تنسيق قائمة الأطباق */
+.item {
+    background: white;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* العداد السفلي */
+#cart-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+}
