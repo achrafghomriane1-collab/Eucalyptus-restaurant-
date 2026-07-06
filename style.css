@@ -1,63 +1,6 @@
-/* تنسيق أساسي للصفحة لتغطي الشاشة بالكامل */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background-color: #f4f4f4;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* تنسيق الصفحات لتكون في وسط الشاشة */
-.page {
-    width: 100%;
-    max-width: 600px; /* عرض مناسب للهاتف */
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-/* تنسيق حاوية القائمة */
-#category-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-    justify-content: center;
-}
-
-button {
-    padding: 10px 15px;
-    background: #e67e22;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* تنسيق قائمة الأطباق */
-.item {
-    background: white;
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-/* العداد السفلي */
-#cart-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 18px;
-    cursor: pointer;
-}
+body { font-family: sans-serif; text-align: center; background: #f4f4f4; margin: 0; }
+.page { padding: 20px; background: white; margin: 10px; border-radius: 10px; }
+.item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #ddd; }
+#cart-footer { position: fixed; bottom: 0; width: 100%; background: #333; color: white; padding: 15px; cursor: pointer; }
+#cart-modal { position: fixed; top: 10%; left: 10%; width: 80%; background: white; padding: 20px; border: 1px solid #ccc; }
+button { padding: 10px; margin: 5px; cursor: pointer; background: #e67e22; color: white; border: none; }
