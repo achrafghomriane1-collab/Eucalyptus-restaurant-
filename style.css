@@ -1,0 +1,19 @@
+body {
+    background-image: url('assets/52967.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    color: white;
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+.container { max-width: 500px; margin: auto; background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 10px; }
+
+.item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #333; }
+
+.controls { display: flex; gap: 10px; align-items: center; }
+
+button { padding: 5px 15px; cursor: pointer; border-radius: 5px; border: none; background: #e67e22; color: white; }
