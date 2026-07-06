@@ -2,11 +2,13 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>استراحة الكاليتوسة</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="page1" class="page">
+
+    <div id="page1" class="page" style="display:block;">
         <h1>مرحباً بكم في استراحة الكاليتوسة</h1>
         <button onclick="showPage('page2')">اضغط هنا للبدء</button>
     </div>
@@ -18,15 +20,18 @@
     </div>
 
     <div id="page3" class="page" style="display:none;">
+        <h2>قائمة الطعام</h2>
         <div id="category-buttons"></div>
         <div id="category-items"></div>
         <div id="cart-footer" onclick="toggleCart()">إجمالي الطلب: <span id="total-price">0</span> DA</div>
     </div>
 
     <div id="cart-modal" style="display:none;">
+        <h3>طلباتك:</h3>
         <div id="cart-items"></div>
-        <button onclick="sendOrder()" id="send-btn">إرسال الطلب</button>
-        <p id="msg" style="display:none;">تم استلام طلبك بنجاح! يرجى الانتظار، سيصلك طلبك قريباً.</p>
+        <p>الإجمالي: <span id="final-total">0</span> DA</p>
+        <button id="send-order-btn" onclick="sendOrder()">إرسال الطلب</button>
+        <p id="confirmation-message" style="display:none; color:green;">تم إرسال طلبك بنجاح!</p>
     </div>
 
     <script src="script.js"></script>
