@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Restaurant Eucalyptus</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Restaurant Eucalyptus</h1>
+        <div class="menu-section">
+            <h2>Pizzas</h2>
+            <div class="item">
+                <span>Pizza Margherita</span>
+                <div class="controls">
+                    <button onclick="changeQty('Pizza Margherita', 600, -1)">-</button>
+                    <span id="qty-Pizza-Margherita">0</span>
+                    <button onclick="changeQty('Pizza Margherita', 600, 1)">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
