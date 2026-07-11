@@ -1,4 +1,4 @@
-// 1. البيانات
+// 1. البيانات (قائمة الطعام)
 const menuData = {
     "ENTRÉES FROIDES": [{name:"Salade César",price:700},{name:"Salade Variée",price:600},{name:"Salade au Thon",price:700},{name:"Calamars Frits",price:1500},{name:"Scampi De Crevettes",price:1100}],
     "ENTRÉES CHAUDES": [{name:"Soupe De Poisson",price:600},{name:"Gratin Poulet",price:500},{name:"Gratin Fruit De Mer",price:600},{name:"Omelette Crevettes",price:800},{name:"Beignets De Camembert",price:600}],
@@ -17,31 +17,42 @@ const app = document.getElementById('app');
 
 // 2. التنقل بين الصفحات
 function showPage(page) {
-    if(page === 'welcome') app.innerHTML = `<div class="page"><h1>Bienvenue à Istirahat El Kalitoussa</h1><button onclick="showPage('table')">Entrer</button></div>`;
-    else if(page === 'table') app.innerHTML = `<div class="page"><h2>Numéro de table</h2><input type="number" id="tableNum" placeholder="Ex: 01"><br><button onclick="showPage('menu')">Continuer</button></div>`;
-    else if(page === 'menu') {
+    if(page === 'welcome') {
+        app.innerHTML = `<div class="page"><h1>Bienvenue à Istirahat El Kalitoussa</h1><button onclick="showPage('table')">Entrer</button></div>`;
+        document.getElementById('cart-footer').classList.add('hidden');
+    } else if(page === 'table') {
+        app.innerHTML = `<div class="page"><h2>Numéro de table</h2><input type="number" id="tableNum" placeholder="Ex: 01"><br><button onclick="showPage('menu')">Continuer</button></div>`;
+    } else if(page === 'menu') {
         app.innerHTML = `<h1>Menu</h1>` + Object.keys(menuData).map(c => `<button onclick="renderCat('${c}')">${c}</button>`).join('');
         document.getElementById('cart-footer').classList.remove('hidden');
     }
 }
 
-// 3. عرض الأطباق
+// 3. عرض الأطباق داخل كل تصنيف
 function renderCat(cat) {
     app.innerHTML = `<h1>${cat}</h1><button onclick="showPage('menu')">Retour</button>`;
     menuData[cat].forEach(i => {
         app.innerHTML += `<div class="menu-item">
             <div>${i.name}<br><b>${i.price} da</b></div>
-            <div><button onclick="update('${i.name}',${i.price},-1)">-</button><span id="q-${i.name}">0</span><button onclick="update('${i.name}',${i.price},1)">+</button></div>
+            <div>
+                <button onclick="update('${i.name}',${i.price},-1)">-</button>
+                <span id="q-${i.name}">${cart[i.name]?.q || 0}</span>
+                <button onclick="update('${i.name}',${i.price},1)">+</button>
+            </div>
         </div>`;
     });
 }
 
-// 4. تحديث السلة
+// 4. تحديث السلة (المنطق)
 function update(n, p, c) {
     if(!cart[n]) cart[n] = {q:0, p:p};
     cart[n].q = Math.max(0, cart[n].q + c);
     if(cart[n].q === 0) delete cart[n];
+    
+    // تحديث رقم الطبق في الصفحة الحالية إن وُجد
     if(document.getElementById(`q-${n}`)) document.getElementById(`q-${n}`).innerText = cart[n]?.q || 0;
+    
+    // تحديث العداد السفلي
     document.getElementById('total-price').innerText = Object.values(cart).reduce((s, i) => s + (i.q * i.p), 0);
 }
 
@@ -58,19 +69,26 @@ function showCartModal() {
             </div>
         </div>`).join('');
     
-    list.innerHTML += `<button onclick="sendOrder()" style="width:100%; margin-top:20px; background-color:#28a745; color:white; padding:10px; border:none; border-radius:5px;">Envoyer la commande</button>`;
+    list.innerHTML += `<button onclick="sendOrder()" style="width:100%; margin-top:20px; background-color:#28a745; color:white; padding:10px; border:none; border-radius:5px; cursor:pointer;">Envoyer la commande</button>`;
     document.getElementById('cart-modal').classList.remove('hidden');
 }
 
 function closeCartModal() { document.getElementById('cart-modal').classList.add('hidden'); }
 
-// 6. إرسال الطلب (هنا سيتم ربطه لاحقاً بقاعدة البيانات)
+// 6. إرسال الطلب النهائي
 function sendOrder() {
     const table = document.getElementById('tableNum').value;
     if(!table) return alert("Veuillez entrer le numéro de table !");
-    alert(`Commande envoyée pour la Table ${table}.`);
+    if(Object.keys(cart).length === 0) return alert("Votre panier est vide !");
+
+    alert(`Merci pour votre visite !\nVotre commande pour la table ${table} a été envoyée avec succès.\nBon appétit !`);
+    
+    // تصفير السلة
+    cart = {};
+    document.getElementById('total-price').innerText = "0";
     closeCartModal();
-    // هنا سيتم إضافة الكود الخاص بإرسال البيانات للسيرفر
+    showPage('menu');
 }
 
+// تشغيل الصفحة الأولى
 showPage('welcome');
